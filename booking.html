@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Booking Page</title>
+    <link rel="icon" href="{% static '/imgs/logo-png.png' %}">
+</head>
+<body>
+    <div class="top-bar">
+        <a href="{% url 'index' %}">
+        <img src="{% static '/imgs/logo-png.png' %}" class="logo">
+        </a>
+        <nav class="navbar">
+            <ul class="navbar-nav">
+                <li class="nav-link"><a href="{% url 'display' cat='Bread'%}">BREAD</a></li>
+                <li class="nav-link"><a href="{% url 'display' cat='Cake'%}">CAKES</a></li>
+                <li class="nav-link"><a href="{% url 'display' cat='Pastry'%}">PASTRY</a></li>
+                <li class="nav-link"><a href="{% url 'display' cat='Cookies'%}">COOKIES</a></li>
+                <li class="nav-link"><a href="{% url 'display' cat='Moroccan'%}">MOROCCAN</a></li>
+                <li class=" nav-link-icons">
+                    <li class="nav-link"><a href="#" target="">
+                        <div class="search-box">
+                            <form action="/search" method="get">
+                                <input class="search-txt" type="search" name="query" id = "query" placeholder="Recherche">
+                                <button type = "submit" class="search-btn"><i class="fas fa-search search-box-icon"></i></button>
+                            </form>
+                        </div>
+                    </a></li>
+                    <li class="nav-link"><a href="{% url 'shoppingcart:index' %}" target="_blank"><i class="fas fa-shopping-cart"></i></a></li>
+                </li>
+            </ul>
+        </nav>
+      </div>
+
+    
+    <!--Grid Code Goes Here-->
+    <main id = "container-booking"></main>
+    <button class="send-booking-request">Envoyer la demande</button>
+
+    <!--Popup Form Starts Here-->
+    <div class="container">
+        <form id="contact" action="" method="post">
+          {% csrf_token %}
+          <i class="fas fa-times close-container"></i>
+          <h3>Demande de réservation: </h3>
+          <h4>Contactez-nous aujourd'hui et recevez une réponse dans 24h!</h4>
+          <fieldset>
+            <input class="txt" placeholder="Nom et Prénom" type="text" tabindex="1" name = "name" required autofocus>
+          </fieldset>
+          <fieldset>
+            <input class="txt" placeholder="Email" type="email" name = "email"  tabindex="2" required>
+          </fieldset>
+          <fieldset>
+            <input class="txt" placeholder="Numéro de téléphone" type="tel" tabindex="3" name = "phone" pattern="[0-9]{10}" required>
+            <small>Format: 0634567890</small>
+          </fieldset>
+          <fieldset>
+            <div class="request-booking">
+                <select required class="booking-time-dropdown" tabindex="4" name = "time" >
+                    <option disabled selected hidden value="">Choisissez l'heure:</option>
+                    <option value="6AM">6:00AM</option>
+                    <option value="7AM">7:00AM</option>
+                    <option value="8AM">8:00AM</option>
+                    <option value="9AM">9:00AM</option>
+                    <option value="10AM">10:00AM</option>
+                    <option value="11AM">11:00AM</option>
+                    <option value="12AM">12:00AM</option>
+                    <option value="1PM">1:00PM</option>
+                    <option value="2PM">2:00PM</option>
+                    <option value="3PM">3:00PM</option>
+                    <option value="4PM">4:00PM</option>
+                    <option value="5PM">5:00PM</option>
+                    <option value="6PM">6:00PM</option>
+                    <option value="7PM">7:00PM</option>
+                    <option value="8PM">8:00PM</option>
+                    <option value="9PM">9:00PM</option>
+                    <option value="10PM">10:00PM</option>
+                    <option value="11PM">11:00PM</option>
+                </select>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div class="request-booking">
+                <select required class="booking-day-dropdown" tabindex="5" name = "day" >
+                    <option disabled selected hidden value="">Choisissez le jour:</option>
+                    <option value="Lundi">Lundi</option>
+                    <option value="Mardi">Mardi</option>
+                    <option value="Mercredi">Mercredi</option>
+                    <option value="Jeudi">Jeudi</option>
+                    <option value="Vendredi">Vendredi</option>
+                    <option value="Samedi">Samedi</option>
+                    <option value="Dimanche">Dimanche</option>
+                </select>
+            </div>
+          </fieldset>
+          <fieldset>
+            <label for="description">Spécifiez la raison de votre réservation:</label>
+            <textarea class="txt" placeholder="Votre message ici...." tabindex="6" name = "description"  required></textarea>
+          </fieldset>
+          <fieldset>
+            <button name="submit" type="submit" id="booking-submit" data-submit="...Envoi">Envoyer la demande</button>
+          </fieldset>
+        </form>  
+    </div>
+    <!--Popup Form Ends Here-->
+    {% for message in messages %}
+    <script>alert("{{ message }}");</script>
+    {% endfor %}
+    
+    <div class="info">
+        <div class="info-item">
+            <i class="far fa-2x fa-clock"></i>
+            <h3>HEURES D'OPÉRATION </h2>
+                <span>Lundi au Mercredi: 8:00am - 6:00pm</span>
+                <span>Samedi et Dimanche: 8:00am - 1:00pm</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-2x fa-map-marked-alt"></i>
+                <h3>NOTRE MAGASIN</h2>
+                <span>1234 First Avenue</span>
+                <span>New Haven, CT 06509</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-2x fa-mobile-alt"></i>
+                <h3>CONTACTEZ-NOUS</h2>
+                <span>Numéro de téléphone #: 203-123-6789</span>
+                <span>Email: contact@backery.com</span>
+        </div>
+    </div>
+    <footer>© Nebs Bakery 2020</footer>
+    <script src="{% static 'booking.js' %}"></script>
+    <script> 
+        window.onload = function(){
+            let data = JSON.parse("{{data|escapejs}}"); 
+            console.log(data);
+            let len = data.length
+            for(i = 0; i < len; i++){
+                str = "."+data[i].fields.day +"-"+ data[i].fields.time;
+                console.log(str);
+                timeSlot = document.querySelector(str);
+                timeSlot.style.backgroundColor = "red";
+            }
+        }
+    </script>
+</body>
+</html>
