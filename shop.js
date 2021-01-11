@@ -18,8 +18,8 @@ var fadeTime = 300;
       $('.quantity input').val(100);
       $( '.quantity input' ).change();
     }
-});
-*/
+});*/
+
 
 setInputFilter(document.getElementById("number"), function(value) {
   return /^\d*\.?\d*$/.test(value); 
@@ -75,8 +75,8 @@ $(document).ready(function() {
   updateSumItems();
 });
 
-/*function addQuantity(quantityInput) {
-  /* Calculate line price 
+function addQuantity(quantityInput) {
+
   var productRow = $(quantityInput).parent(".quantity").find(".quantity-field");
   var price = parseFloat(productRow.children('.price').text());
   var quantity = $(quantityInput).val();
@@ -88,7 +88,6 @@ $(document).ready(function() {
   var quantity = $(quantityInput).val();
   var linePrice = price * quantity;
 
-  /* Update line price display and recalc cart totals 
   productRow.children('.subtotal').each(function() {
     $(this).fadeOut(fadeTime, function() {
       $(this).text(linePrice.toFixed(2));
@@ -99,10 +98,9 @@ $(document).ready(function() {
   
   productRow.find('.item-quantity').text(quantity);
   updateSumItems();
-}*/
+}
 
-/*function subQuantity(quantityInput) {
-  /* Calculate line price 
+function subQuantity(quantityInput) {
   var productRow = $(quantityInput).parent().parent();
   var price = parseFloat(productRow.children('.price').text());
   var quantity = $(quantityInput).val();
@@ -116,7 +114,6 @@ $(document).ready(function() {
   var quantity = $(quantityInput).val();
   var linePrice = price * quantity;
 
-  /* Update line price display and recalc cart totals 
   productRow.children('.subtotal').each(function() {
     $(this).fadeOut(fadeTime, function() {
       $(this).text(linePrice.toFixed(2));
@@ -127,7 +124,7 @@ $(document).ready(function() {
   
   productRow.find('.item-quantity').text(quantity);
   updateSumItems();
-}*/
+}
 
 /* Recalculate cart */
 function recalculateCart(onlyTotal) {
@@ -202,7 +199,6 @@ function removeItem(removeButton) {
     updateSumItems();
   });
 }
-
 
 function recalculateCart2(onlyTotal) {
 var subtotal = 0;

@@ -1,35 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-{% load static %}
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"/>
-  <link rel="icon" href="{% static '/imgs/logo-png.png' %}">
+  <link rel="icon" href="/imgs/logo-png.png">
   
-  <link rel="stylesheet" href="/static/shopping.css? {% now "U" %}"/> 
-  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="stylesheet" href="shopping.css"> 
+  <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
   <title>Panier</title>
   
  
-  <script src="{% static shop.js %}"></script>
+  <script src="shop.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script>
+   $('.remove button').click(function() {
+  removeItem(this);
+});
+});
+  </script>
 </head>
+
+
 
 <div class="top-bar">
   <a href="{% url 'index' %}">
-  <img src="{% static '/imgs/logo-png.png' %}" class="logo">
+  <img src="/imgs/logo-png.png" class="logo">
   </a>
   <nav class="navbar">
       <ul class="navbar-nav">
-        <li class="nav-link "><a href="{% url 'display' cat='Bread'%}" >TARTES</a></li>
-        <li class="nav-link"><a href="{% url 'display' cat='Cake'%}" >GATEAUX</a></li>
-        <li class="nav-link"><a href="{% url 'display' cat='Pastry'%}">VIENNOISERIE</a></li>
-        <li class="nav-link"><a href="{% url 'display' cat='Cookies'%}" >DÉJEUNER</a></li>
-        <li class="nav-link"><a href="{% url 'display' cat='Moroccan'%}">MAROCAIN</a></li>
+        <li class="nav-link "><a href="CAT 1.html" >TARTES</a></li>
+        <li class="nav-link"><a href="CAT 2.html" >GATEAUX</a></li>
+        <li class="nav-link"><a href="CAT 3.html">VIENNOISERIE</a></li>
+        <li class="nav-link"><a href="CAT 4.html" >DÉJEUNER</a></li>
+        <li class="nav-link"><a href="CAT 5.html">MAROCAIN</a></li>
           <li class=" nav-link-icons">
               <li class="nav-link"><a href="#" target="">
                   <div class="search-box">
@@ -39,7 +46,7 @@
                       </form>
                   </div>
               </a></li>
-              <li class="nav-link"><a href="{% url 'shoppingcart:index' %}" target="_blank"><i class="fas fa-shopping-cart"></i></a></li>
+              <li class="nav-link"><a href="shoppingcart.html" target="_blank"><i class="fas fa-shopping-cart"></i></a></li>
           </li>
       </ul>
   </nav>
@@ -61,43 +68,67 @@
           <li class="subtotal">Sous-total</li>
         </ul>
       </div>
-      {% for Id in Item_id %}
+     
       <div class="basket-product">
         <div class="item">
           <div class="product-image">
-            <img src="{% static Id.item.picture|cut:'main/static' %}" alt="Placholder Image 2" width="120" height="120" class="product-frame" srcset="">
+            <img src="item-pictures/b1b470cea4d64e37ee5e9e79ffc4c4be.jpg" alt="Placholder Image 2" width="120" height="120" class="product-frame" srcset="">
           </div>
           <div class="product-details">
-            <h1><strong><span class="item-quantity">{{ Id.quantity }}</span> x </strong>  {{ Id.item.name }} </h1>
-            <p><strong>{{ Id.item.description }}</strong></p>
-            <p>{{ Id.item.category }}</p>
+            <h1><strong><span class="item-quantity">2</span> x </strong> Tarte au citron </h1>
+            <p><strong>Tarte sucrée garnie de crème à base de citron.</strong></p>
+            <p>Tarte</p>
           </div>
         </div>
-        <div class="price">{{ Id.item.price }}</div>
+        <div class="price">150</div>
         <div class="quantity">
           <button class="buttonsub">
             -
           </button>
-          <input type="number" id="MEH" value="{{ Id.quantity }}" min="1" class="quantity-field">
+          <input type="number" id="MEH" value="2" min="1" class="quantity-field">
           <button class="buttonadd">
             +
           </button>
         </div>
-        <div class="subtotal">{{ Id.subtotal }}</div>
+        <div class="subtotal">300</div>
         <div class="remove">
           <button>Supprimer</button>
         </div>
       </div>
-      {% empty %}
-      <li class= "none"> Oops, le panier est vide. </li>
-      {% endfor %}
+      <div class="basket-product">
+        <div class="item">
+          <div class="product-image">
+            <img src="item-pictures/tarte-citron-laduree-1.webp" alt="Placholder Image 2" width="120" height="120" class="product-frame" srcset="">
+          </div>
+          <div class="product-details">
+            <h1><strong><span class="item-quantity">2</span> x </strong> Gâteau au chocolat </h1>
+            <p><strong>Gâteau au chocolat blanc décoré avec des macarons de differents arômes.</strong></p>
+            <p>Gâteau</p>
+          </div>
+        </div>
+        <div class="price">270.5</div>
+        <div class="quantity">
+          <button class="buttonsub">
+            -
+          </button>
+          <input type="number" id="MEH" value="1" min="1" class="quantity-field">
+          <button class="buttonadd">
+            +
+          </button>
+        </div>
+        <div class="subtotal">270.5</div>
+        <div class="remove">
+          <button>Supprimer</button>
+        </div>
+      </div>
     </div>
+    
     <aside>
       <div class="summary">
-        <div class="summary-total-items"><span class="total-items"></span> Produits dans mon panier </div>
+        <div class="summary-total-items"><span class="total-items"></span> 3 Produits dans mon panier </div>
         <div class="summary-subtotal">
           <div class="subtotal-title">Sous-total</div>
-          <div class="subtotal-value final-value" id="basket-subtotal">{{ total }}</div>
+          <div class="subtotal-value final-value" id="basket-subtotal">570.5</div>
         </div>
         
         <form method="POST" action="{% url 'shoppingcart:confirm' %}">
@@ -106,11 +137,11 @@
             <!--<select id="myselect" name="delivery-collection">-->
                 <option value="0" selected="selected">Selectionner retrait en magasin ou livraison</option>
                <option value="2">Retrait en magasin</option>
-               <option value="1">Frais de livraison</option>
+               <option value="1">Livraison</option>
             </select>
           </div>
         <div class="client-info">
-              {% csrf_token %}
+              
                 <label for="fname">Prénom:</label>
                 <input class="txt" type="text" id="fname" name="fname" required><br><br>
                 <label for="lname">Nom:</label>
@@ -121,13 +152,13 @@
                 <label for="address" >Addresse: </label>
                 <input placeholder="Addresse" class="txt" id="address" name="address" value=" " type="text" required><br><br>
                 <div class="summary-subtotal">
-                    <div class="subtotal-title">Delivery charge</div>
+                    <div class="subtotal-title">Frais de livraison</div>
                     <div class="subtotal-value final-value"> 15</div>
                   </div>
                 </div>
                 <div class="summary-total">
                     <div class="total-title">Total</div>
-                    <div class="total-value final-value" id="basket-total">{{ total }}</div>
+                    <div class="total-value final-value" id="basket-total">570.5</div>
                     <input type="hidden" value='{{ total }}' name="ttl">
                   </div>
                 <div class="summary-checkout">
