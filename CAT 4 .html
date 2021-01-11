@@ -1,29 +1,28 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Open+Sans:wght@300&display=swap" rel="stylesheet">    
-    <title>{{ Cat }}</title>
-    <link rel="icon" href="{% static '/imgs/logo-png.png' %}">
+    <title>Déjeuner</title>
+    <link rel="icon" href="/imgs/logo-png.png">
 </head>
 <body>
     <div class="top-bar">
-        <a href="{% url 'index' %}">
-            <img src="{% static '/imgs/logo-png.png' %}" class="logo">
+        <a href="index.html">
+        <img src="/imgs/logo-png.png" class="logo">
         </a>
         <nav class="navbar">
             <ul class="navbar-nav">
-                <li class="nav-link "><a href="{% url 'display' cat='Bread'%}" >TARTES</a></li>
-                <li class="nav-link"><a href="{% url 'display' cat='Cake'%}" >GATEAUX</a></li>
-                <li class="nav-link"><a href="{% url 'display' cat='Pastry'%}">VIENNOISERIE</a></li>
-                <li class="nav-link"><a href="{% url 'display' cat='Cookies'%}" >DÉJEUNER</a></li>
-                <li class="nav-link"><a href="{% url 'display' cat='Moroccan'%}">MAROCAIN</a></li>
+              <li class="nav-link "><a href="CAT 1.html" >TARTES</a></li>
+              <li class="nav-link"><a href="CAT 2.html" >GATEAUX</a></li>
+              <li class="nav-link"><a href="CAT 3.html">VIENNOISERIE</a></li>
+              <li class="nav-link"><a href="CAT 4 .html" >DÉJEUNER</a></li>
+              <li class="nav-link"><a href="CAT 5 .html">MAROCAIN</a></li>
                 <li class=" nav-link-icons">
                     <li class="nav-link"><a href="#" target="">
                         <div class="search-box">
@@ -33,11 +32,11 @@
                             </form>
                         </div>
                     </a></li>
-                    <li class="nav-link"><a href="{% url 'shoppingcart:index' %}" target="_blank"><i class="fas fa-shopping-cart"></i></a></li>
+                    <li class="nav-link"><a href="shoppingcart.html" target="_blank"><i class="fas fa-shopping-cart"></i></a></li>
                 </li>
             </ul>
         </nav>
-    </div>
+      </div>
 
     <div class="display-items-container">
         <div class="select">
@@ -50,21 +49,85 @@
         </div>
   
         <div class="display-items-grid">
-            {% for item in Items %}
             <ul class="item-zone">
-                <li class="item-image"><img src="{% static item.picture|cut:'main/static' %}" alt="" srcset=""></li>
-                <li class="item-name">{{ item.name }}</li>
-                <li class="item-price">{{ item.price }}</li>
-                <li class="item-description">{{ item.description }}</li>
-                <form method="POST" action="{% url 'shoppingcart:index' %}">
+                <li class="item-image"><img src="imgs/burger.jpg" alt="" srcset=""></li>
+                <li class="item-name">Hamburger</li>
+                <li class="item-price">DHS 33</li>
+                <li class="item-description">Burger + Frites + Boisson</li>
+                <form method="POST" action="shoppingcart.html">
                    <!-- <input type="text" value ='{{ item.id }}'>-->
-                   {% csrf_token %}
+                  
                    <input type="hidden" name="product" value='{{ item.id }}'>
                    <!--{{ form }}-->
                 <input type ="submit" class="btn btn-display" value="Ajouter au panier"></input>
                 </form>
             </ul>
-            {% endfor %}
+            <ul class="item-zone">
+                <li class="item-image"><img src="imgs/1200px-Cheeseburger_with_fries.jpg" alt="" srcset=""></li>
+                <li class="item-name">Cheeseburger</li>
+                <li class="item-price">DHS 35</li>
+                <li class="item-description">Cheeseburger + Frites + Boisson</li>
+                <form method="POST" action="shoppingcart.html">
+                   <!-- <input type="text" value ='{{ item.id }}'>-->
+                  
+                   <input type="hidden" name="product" value='{{ item.id }}'>
+                   <!--{{ form }}-->
+                <input type ="submit" class="btn btn-display" value="Ajouter au panier"></input>
+                </form>
+            </ul>
+            <ul class="item-zone">
+                <li class="item-image"><img src="item-pictures/4DHLSVBWKRB7LBDZOHUPP3L5JQ.jpg" alt="" srcset=""></li>
+                <li class="item-name">Hot Dog</li>
+                <li class="item-price">DHS 20</li>
+                <li class="item-description">Hot Dog + Boisson</li>
+                <form method="POST" action="shoppingcart.html">
+                   <!-- <input type="text" value ='{{ item.id }}'>-->
+                  
+                   <input type="hidden" name="product" value='{{ item.id }}'>
+                   <!--{{ form }}-->
+                <input type ="submit" class="btn btn-display" value="Ajouter au panier"></input>
+                </form>
+            </ul>
+            <ul class="item-zone">
+                <li class="item-image"><img src="item-pictures/o-tacos-agadir.jpg" alt="" srcset=""></li>
+                <li class="item-name">Tacos</li>
+                <li class="item-price">DHS 45</li>
+                <li class="item-description">Tacos avec sauce aux choix + Frites</li>
+                <form method="POST" action="shoppingcart.html">
+                   <!-- <input type="text" value ='{{ item.id }}'>-->
+                  
+                   <input type="hidden" name="product" value='{{ item.id }}'>
+                   <!--{{ form }}-->
+                <input type ="submit" class="btn btn-display" value="Ajouter au panier"></input>
+                </form>
+            </ul>
+            <ul class="item-zone">
+                <li class="item-image"><img src="item-pictures/bb_itku120801_0243a_x.jpg" alt="" srcset=""></li>
+                <li class="item-name">Pizza Margarita</li>
+                <li class="item-price">DHS 25</li>
+                <li class="item-description">Pizza + Boisson</li>
+                <form method="POST" action="shoppingcart.html">
+                   <!-- <input type="text" value ='{{ item.id }}'>-->
+                  
+                   <input type="hidden" name="product" value='{{ item.id }}'>
+                   <!--{{ form }}-->
+                <input type ="submit" class="btn btn-display" value="Ajouter au panier"></input>
+                </form>
+            </ul>
+            <ul class="item-zone">
+                <li class="item-image"><img src="item-pictures/i58806-sandwich-au-poulet-a-l-avocat-et-au-bacon.jpg" alt="" srcset=""></li>
+                <li class="item-name">Sandwich poulet</li>
+                <li class="item-price">DHS 25</li>
+                <li class="item-description">Sandwich poulet + Fromage + Boisson</li>
+                <form method="POST" action="shoppingcart.html">
+                   <!-- <input type="text" value ='{{ item.id }}'>-->
+                  
+                   <input type="hidden" name="product" value='{{ item.id }}'>
+                   <!--{{ form }}-->
+                <input type ="submit" class="btn btn-display" value="Ajouter au panier"></input>
+                </form>
+            
+         
         </div>
     </div>
     
